@@ -46,7 +46,7 @@ const bugMax = 99;
       <a href='http://localhost:3000/bugs/${Math.round(Math.random()) === 1? (parseInt(req.params.number_of_bugs)-1) : (parseInt(req.params.number_of_bugs) + Math.floor(Math.random()*100))}'>take one down, patch it around</a>
       `);
     });
-    
+
 const max = 99;
 app.get("/", (req, res) => {
     res.send(`
@@ -61,8 +61,22 @@ app.get("/:number_of_bottles", (req, res) => {
     <a href='http://localhost:3000/${parseInt(req.params.number_of_bottles)-1}'>take one down, pass it around</a>
     `);
   });
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////////////////Fibonnaci /////////////////////////////////////////////////////////////////////////////////////////////
+
+const fiboarr = [0,1,1];
+for (let i = 3; i <100;i++){
+    fiboarr.push((fiboarr[i-1]+fiboarr[i-2]));
+}
+console.log(fiboarr);
 
 
+app.get("/fibonacci/:fibonum", (req, res) => {
+    res.send(`
+    <h1>${fiboarr.indexOf(parseInt(req.params.fibonum)) >= 0? 'Very good. It is Fibonacci.' : 'I can tell this is not a fibonacci number.'}</h1>
+    `);
+  });
 
 app.listen(PORT, () => {
     console.log("app is running on port:", PORT);
