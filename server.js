@@ -29,9 +29,38 @@ app.get("/magic/:index", (req, res) => {
       res.send(`<h1> ${req.params.index} and the answer is ${magicball8[Math.floor(Math.random()*magicball8.length)]}</h1>`);
     }
   );
-///////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-///////////Take one Down and Pass it Around////////////////////////////////////////////\
+///////////////////////////Request////////////////////////////////////////////////////////////////////////////////////////////
+const http = require("http")
+let requestData = "";
+
+const fetchCall = (type, attr) => {
+http.get(`http://jservice.io/api/${type}?count=${attr}`, res => {
+        let data = ""
+        res.on("data", d => {
+            data += d;
+        })
+        res.on("end", () => {
+            console.log(data)
+            requestData = JSON.parse(data);
+        })
+        })
+}
+
+app.get("/jservice", (req, res) => {
+    if (req.query.type === "random") {
+            fetchCall(req.query.type, req.query.count);
+        }
+
+    res.send(requestData.map((item,index) => (
+    `Question${index}: ${item.question}<br>
+     Answer${index}: ${item.answer}`)));
+    })
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////Take one Down and Pass it Around/////////////////////////////////////////////////////////////////////////
 const bugMax = 99;
   app.get("/bugs", (req, res) => {
       res.send(`
@@ -69,7 +98,7 @@ const fiboarr = [0,1,1];
 for (let i = 3; i <100;i++){
     fiboarr.push((fiboarr[i-1]+fiboarr[i-2]));
 }
-console.log(fiboarr);
+// console.log(fiboarr);
 
 
 app.get("/fibonacci/:fibonum", (req, res) => {
@@ -77,6 +106,10 @@ app.get("/fibonacci/:fibonum", (req, res) => {
     <h1>${fiboarr.indexOf(parseInt(req.params.fibonum)) >= 0? 'Very good. It is Fibonacci.' : 'I can tell this is not a fibonacci number.'}</h1>
     `);
   });
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
 app.listen(PORT, () => {
     console.log("app is running on port:", PORT);
