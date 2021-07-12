@@ -206,11 +206,6 @@ Sign up for [HackerRank](https://www.hackerrank.com/). Solve a few of the proble
 
 *Copyright 2018, General Assembly Space. Licensed under [CC-BY-NC-SA, 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
-
-
-##### Previous headers:
-###### Express Practice
-
 ---
 Title: JS Express & Routes Practice<br>
 Type: Homework<br>
