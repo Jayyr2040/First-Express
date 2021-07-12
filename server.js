@@ -29,8 +29,38 @@ app.get("/magic/:index", (req, res) => {
       res.send(`<h1> ${req.params.index} and the answer is ${magicball8[Math.floor(Math.random()*magicball8.length)]}</h1>`);
     }
   );
+///////////////////////////////////////////////////////////////////////////////////////
 
+///////////Take one Down and Pass it Around////////////////////////////////////////////\
+const bugMax = 99;
+  app.get("/bugs", (req, res) => {
+      res.send(`
+      <h1>${bugMax} little bugs in the code</h1>
+      <a href='http://localhost:3000/bugs/${bugMax-1}'>take one down, patch it around</a>
+      `);
+    });
+  
+  app.get("/bugs/:number_of_bugs", (req, res) => {
+      res.send(`
+      <h1>${req.params.number_of_bugs}  little bugs in the code</h1>
+      <a href='http://localhost:3000/bugs/${Math.round(Math.random()) === 1? (parseInt(req.params.number_of_bugs)-1) : (parseInt(req.params.number_of_bugs) + Math.floor(Math.random()*100))}'>take one down, patch it around</a>
+      `);
+    });
+    
+const max = 99;
+app.get("/", (req, res) => {
+    res.send(`
+    <h1>${max} Bottles of beer on the wall</h1>
+    <a href='http://localhost:3000/${max-1}'>take one down, pass it around</a>
+    `);
+  });
 
+app.get("/:number_of_bottles", (req, res) => {
+    res.send(`
+    <h1>${req.params.number_of_bottles} Bottles of beer on the wall</h1>
+    <a href='http://localhost:3000/${parseInt(req.params.number_of_bottles)-1}'>take one down, pass it around</a>
+    `);
+  });
 
 
 
