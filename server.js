@@ -19,6 +19,18 @@ app.get("/greeting/:name", (req, res) => {
 app.get("/tip/:total/:tipPercentage", (req, res) => {
     res.send(`Tip will be  ${(parseInt(req.params.total) * parseInt(req.params.tipPercentage)/100)}, for a bill of ${req.params.total} and tip % at ${req.params.tipPercentage}`);
   }); 
+////////////////////////////////////////////////////////////////////////////////////
+
+////////////Magic 8 Ball//////////////////////////////////////////////////////////
+const magicball8 = 
+["It is certain", "It is decidedly so", "Without a doubt", "Yes definitely","You may rely on it", "As I see it yes", "Most likely", "Outlook good","Yes", "Signs point to yes", "Reply hazy try again", "Ask again later","Better not tell you now", "Cannot predict now", "Concentrate and ask again","Don't count on it", "My reply is no", "My sources say no","Outlook not so good", "Very doubtful"];
+
+app.get("/magic/:index", (req, res) => {
+      res.send(`<h1> ${req.params.index} and the answer is ${magicball8[Math.floor(Math.random()*magicball8.length)]}</h1>`);
+    }
+  );
+
+
 
 
 
