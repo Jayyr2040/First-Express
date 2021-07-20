@@ -53,9 +53,7 @@ app.get("/jservice", (req, res) => {
             fetchCall(req.query.type, req.query.count);
         }
 
-    res.send(requestData.map((item,index) => (
-    `Question${index}: ${item.question}<br>
-     Answer${index}: ${item.answer}`)));
+    res.send(requestData.map((item,index) => (`Question${index}: ${item.question}<br>Answer${index}: ${item.answer}`)));
     })
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
